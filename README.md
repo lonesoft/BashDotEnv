@@ -1,2 +1,2 @@
 # BashDotEnv
-Handles environment variables / configurations
+Handle environment variables / configurations
