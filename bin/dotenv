@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+
+function main(){
+  DOTENV=${DOTENV:-.env/.env}
+  _dotenv_load_envs $DOTENV
+  if [ -n "$APP_ENV" ]; then
+      _dotenv_load_envs $DOTENV.${APP_ENV}
+  fi
+}
+
+function _dotenv_load_envs() {
+  _dotenv_load_env $1
+  _dotenv_load_env $1.local
+}
+
+function _dotenv_load_env() {
+    local file=$1
+    if [ -f "$file" ]; then
+        set -o allexport
+        . "$file"
+        set +o allexport
+    fi
+}
+
+main

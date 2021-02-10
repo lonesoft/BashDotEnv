@@ -1,6 +1,7 @@
 {
     "name": "lonesoft/bash-dot-env",
     "description": "Handle environment variables / configurations",
+    "version": "0.1.0",
     "license": "MIT",
     "authors": [
         {
@@ -8,6 +9,8 @@
             "email": "lorenzomengon@gmail.com"
         }
     ],
-    "minimum-stability": "dev",
+    "bin": [
+        "bin/dotenv"
+    ],
     "require": {}
 }
