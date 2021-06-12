@@ -10,12 +10,11 @@ function _dotenv_load_env() {
 }
 
 function _dotenv_process(){
-  DOTENV=${DOTENV:-$root/.env}
-  _dotenv_load_env $DOTENV/.env
-  _dotenv_load_env $DOTENV/.env.local
+  _dotenv_load_env $DOTENV_FOLDER/.env
+  _dotenv_load_env $DOTENV_FOLDER/.env.local
   if [ -n "$APP_ENV" ]; then
-      _dotenv_load_env $DOTENV/.env.${APP_ENV}
-      _dotenv_load_env $DOTENV/.env.${APP_ENV}.local
+      _dotenv_load_env $DOTENV_FOLDER/.env.${APP_ENV}
+      _dotenv_load_env $DOTENV_FOLDER/.env.${APP_ENV}.local
   fi
 }
 
@@ -45,9 +44,14 @@ function _dotenv_loop(){
 }
 
 function dotenv(){
+  # default variables
+  export APP_ENV=${APP_ENV:-dev}
+  export DOTENV_FOLDER=${DOTENV_FOLDER:-$(pwd)/.env}
+
   local env=$1
   shift 1
   local command="$@"
+
   case $env in
     "--help")
       echo "Usage:"
@@ -62,8 +66,7 @@ function dotenv(){
       return
       ;;
   esac
-  local root="$(dirname "$(dirname "$(dirname "${BASH_SOURCE[0]}")")")"
-  export APP_ENV=dev
+
   if [[ "$env" != "" && "$env" != "-" ]]; then
     export APP_ENV=$env
   fi
