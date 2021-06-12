@@ -70,8 +70,8 @@ function dotenv(){
   _dotenv_loop
 
   if [[ "$command" != "" ]]; then
-    echo :: $APP_ENV
-    echo :: "$@"
+#    echo :: $APP_ENV
+#    echo :: "$@"
     "$@"
   fi
 }
