@@ -63,6 +63,7 @@ function dotenv(){
       ;;
   esac
   local root="$(dirname "$(dirname "$(dirname "${BASH_SOURCE[0]}")")")"
+  export APP_ENV=dev
   if [[ "$env" != "" && "$env" != "-" ]]; then
     export APP_ENV=$env
   fi
