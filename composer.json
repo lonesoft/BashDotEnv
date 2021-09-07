@@ -10,7 +10,9 @@
         }
     ],
     "bin": [
-        "bin/dotenv"
+        "bin/dotenv",
+        "bin/dev",
+        "bin/prod"
     ],
     "require": {}
 }
